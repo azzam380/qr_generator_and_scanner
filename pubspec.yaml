@@ -31,6 +31,7 @@ dependencies:
   printing: ^5.14.2             # Untuk preview & print PDF
   path_provider: ^2.1.5         # Untuk akses direktori file (Downloads)
   open_file: ^3.5.0             # Untuk buka PDF setelah generate (opsional)
+  shared_preferences: ^2.2.2
   
 
 dev_dependencies:
