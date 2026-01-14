@@ -81,13 +81,13 @@ class HomeScreen extends StatelessWidget {
                     icon: Icons.send,
                     label: 'Share',
                     color: Colors.greenAccent,
-                    route: '', // TODO
+                    route: '/create', // TODO
                   ),
                   _MenuButton(
                     icon: Icons.print,
                     label: 'Print',
                     color: Colors.purpleAccent,
-                    route: '', // TODO
+                    route: '/create', // TODO
                   ),
                 ],
               ),
