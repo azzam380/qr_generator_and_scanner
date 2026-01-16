@@ -231,6 +231,8 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ... (Bagian atas HomeScreen tetap sama) ...
+
 class _MenuButton extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -238,7 +240,15 @@ class _MenuButton extends StatelessWidget {
   final Color color;
   final String? route;
   final VoidCallback? onTap;
-  const _MenuButton({required this.icon, required this.label, required this.subtitle, required this.color, this.route, this.onTap});
+
+  const _MenuButton({
+    required this.icon,
+    required this.label,
+    required this.subtitle,
+    required this.color,
+    this.route,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -246,23 +256,83 @@ class _MenuButton extends StatelessWidget {
       onTap: onTap ?? () => Navigator.pushNamed(context, route!),
       borderRadius: BorderRadius.circular(25),
       child: Container(
-        padding: const EdgeInsets.all(16),
+        // Menjaga agar background logo tidak keluar batas rounded
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: Colors.white, 
-          borderRadius: BorderRadius.circular(25), 
-          boxShadow: [BoxShadow(color: color.withOpacity(0.1), blurRadius: 10)],
-          border: Border.all(color: Colors.grey.withOpacity(0.05)),
-        ),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(12)),
-            child: Icon(icon, color: color, size: 28),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(
+              color: color.withOpacity(0.15),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
+            )
+          ],
+          // Gradien halus di background sesuai warna tombol
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.white,
+              color.withOpacity(0.05), // Sedikit sentuhan warna di pojok
+            ],
           ),
-          const SizedBox(height: 12),
-          Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-          Text(subtitle, style: const TextStyle(fontSize: 11, color: Colors.grey)),
-        ]),
+          border: Border.all(color: color.withOpacity(0.1)),
+        ),
+        child: Stack(
+          children: [
+            // --- BACKGROUND LOGO / WATERMARK (WARNA SESUAI TOMBOL) ---
+            Positioned(
+              right: -20,
+              bottom: -20,
+              child: Icon(
+                icon,
+                size: 110,
+                color: color.withOpacity(0.07), // Warna transparan senada ikon
+              ),
+            ),
+            
+            // --- KONTEN UTAMA ---
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Wadah Ikon Kecil
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: color.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Icon(icon, color: color, size: 30),
+                  ),
+                  const SizedBox(height: 14),
+                  // Teks Label
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.blueGrey.shade900,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  // Teks Subtitle
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.blueGrey.shade400,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
