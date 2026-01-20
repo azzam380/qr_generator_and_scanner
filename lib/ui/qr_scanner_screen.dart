@@ -272,3 +272,5 @@ class QrPickerScreen extends StatelessWidget {
     );
   }
 }
+
+//

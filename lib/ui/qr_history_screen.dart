@@ -9,7 +9,7 @@ class QrHistoryScreen extends StatefulWidget {
   @override
   State<QrHistoryScreen> createState() => _QrHistoryScreenState();
 }
-
+//
 class _QrHistoryScreenState extends State<QrHistoryScreen> {
   List<Map<String, String>> _history = [];
   bool _isLoading = true;

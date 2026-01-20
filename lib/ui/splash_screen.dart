@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacementNamed(context, '/home');
     });
   }
-
+//
   @override
   Widget build(BuildContext context) {
     return Scaffold(
