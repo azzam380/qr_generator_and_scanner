@@ -12,3 +12,6 @@ linter:
   rules:
     # Di sini kamu bisa menambahkan aturan linter spesifik jika diperlukan di masa depan
     # Contoh: prefer_single_quotes: true
+
+
+    
